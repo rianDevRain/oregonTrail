@@ -52,7 +52,7 @@ class Wagon {
 		debugger;
 		let totalFood = 0;
 		for (let i = 0; i < this.passengers.length; i++) {
-			if(this.passengers[i].food === 0) {
+			if(this.passengers[i].food <= 0) {
 				totalFood = totalFood
 			} else {
 			totalFood += this.passengers[i].food
