@@ -8,15 +8,15 @@ class Traveler {
 	}
 
 	hunt() {
-		this.isHealthy += 2;
+		this.food += 2;
 	}
 
 	eat() {
+		this.food--;
 		if (this.food <= 0) {
 			this.isHealthy = false;
-		} else {
-			this.food++;
 		}
+		
 	}
 }
 
@@ -32,46 +32,33 @@ class Wagon {
 	}
 
 	join(traveler) {
-		if (this.passengers.length < this.capacity) {
-			this.passengers.push(traveler.name);
-		} else {
-			console.log("No more Room");
+		// debugger;
+		if(this.getAvailableSeatCount() >= 1) {
+			this.passengers.push(traveler)
 		}
 	}
 
 	shouldQuarantine() {
-		if (!Traveler.isHealthy) {
-			return true;
+		debugger;
+		for (let i = 0; i < this.passengers.length; i++) {
+			if (this.passengers[i].isHealthy === false) {
+				return true
+			}
+			return false
 		}
 	}
 
 	totalFood() {
-		let sum = 0;
-		for (let person of this.passengers){
-
-           person2 = eval(person)
+		debugger;
+		let totalFood = 0;
+		for (let i = 0; i < this.passengers.length; i++) {
+			if(this.passengers[i].food === 0) {
+				totalFood = totalFood
+			} else {
+			totalFood += this.passengers[i].food
+			}
+		}
+		return totalFood
 		}
 	}
-}
 
-// let wagon = new Wagon(2)
-// // Create three travelers
-// let henrietta = new Traveler('Henrietta')
-// let juan = new Traveler('Juan')
-// let maude = new Traveler('Maude')
-// wagon.join(henrietta)
-// wagon.join(juan)
-// wagon.join(maude)  // There is no room for her!
-// console.log(wagon.totalFood())
-// console.log(wagon.passengers)
-// wagon.totalFood()
-
-// console.log(traveler)
-// prettier-ignore
-let wagon = new Wagon(2)
-// Create three travelers
-// prettier-ignore
-let henrietta = new Traveler('Henrietta')
-let juan = new Traveler("Juan");
-let maude = new Traveler("Maude");
-// console.log({juan, henrietta})
